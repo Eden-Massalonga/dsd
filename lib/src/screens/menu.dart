@@ -39,19 +39,19 @@ class _MenuState extends State<Menu> {
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              title: Text('Início'),
+              label: 'Início',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              title: Text('Serviços'),
+              label: 'Serviços',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.receipt),
-              title: Text('Pedidos'),
+              label: 'Pedidos',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.contacts),
-              title: Text('Contactos'),
+              label: 'Contactos',
             ),
           ]),
     );

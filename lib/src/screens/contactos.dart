@@ -154,7 +154,7 @@ class Contactos extends StatelessWidget {
                   Divider(),
                   ListTile(
                     title: Text('www.dsd.uem.mz'),
-                    leading: Icon(Icons.email),
+                    leading: Icon(Icons.http),
                     onTap: () async {
                       await _launchWebSite('http://www.dsd.uem.mz');
                     },

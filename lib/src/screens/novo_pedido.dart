@@ -217,50 +217,64 @@ class _NovoPedidoState extends State<NovoPedido> {
                               )
                             ],
                           ),
-                          Row(
-                            children: <Widget>[
-                              Text('Comprovativo: '),
-                              IconButton(
-                                icon: Icon(Icons.insert_drive_file),
-                                onPressed: () async {
-                                  File comprovativo = await FilePicker.getFile(
-                                    type: FileType.custom,
-//                                    allowedExtensions: ['.doc', '.docx', '.pdf', '.jpg', '.png']
-                                  );
 
-                                  setState(() {
-                                    _comprovativo = comprovativo;
-                                  });
-                                },
-                              ),
-                              IconButton(
-                                icon: Icon(Icons.camera_alt),
-                                onPressed: () async {
-                                  await getImageFromCamera();
-                                },
-                              ),
-                            ],
-                          ),
-                          _comprovativo != null
-                              ? ListTile(
-                                  title: Text(
-                                    basename(_comprovativo.path),
-                                  ),
-                                  trailing: IconButton(
-                                    icon: Icon(
-                                      Icons.delete,
-                                      color: Colors.red,
+                          //
+                          servicoSelecionado.designacao !=
+                                  ('Copia de Documentos')
+                              ? Row(
+                                  children: <Widget>[
+                                    Text('Comprovativo: '),
+                                    IconButton(
+                                      icon: Icon(Icons.insert_drive_file),
+                                      onPressed: () async {
+                                        File comprovativo =
+                                            await FilePicker.getFile(
+                                          type: FileType.custom,
+//                                    allowedExtensions: ['.doc', '.docx', '.pdf', '.jpg', '.png']
+                                        );
+
+                                        setState(() {
+                                          _comprovativo = comprovativo;
+                                        });
+                                      },
                                     ),
-                                    onPressed: () {
-                                      setState(() {
-                                        _comprovativo = null;
-                                      });
-                                    },
-                                  ),
+                                    IconButton(
+                                      icon: Icon(Icons.camera_alt),
+                                      onPressed: () async {
+                                        await getImageFromCamera();
+                                      },
+                                    ),
+                                  ],
                                 )
-                              : Container(
-                                  child: Text('Nao apresentou o comprovativo'),
-                                )
+                              : Container(),
+
+                          //
+                          servicoSelecionado.designacao !=
+                                  ('Copia de Documentos')
+                              ? _comprovativo != null
+                                  ? ListTile(
+                                      title: Text(
+                                        basename(_comprovativo.path),
+                                      ),
+                                      trailing: IconButton(
+                                        icon: Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        ),
+                                        onPressed: () {
+                                          setState(() {
+                                            _comprovativo = null;
+                                          });
+                                        },
+                                      ),
+                                    )
+                                  : Container(
+                                      child: Text(
+                                        'Por favor anexe o comprovativo do vinculo',
+                                        style: TextStyle(color: Colors.red),
+                                      ),
+                                    )
+                              : Container()
                         ],
                       ),
                     ),
@@ -296,7 +310,7 @@ class _NovoPedidoState extends State<NovoPedido> {
                                     onPressed: () {
                                       if (resp) {
                                         Navigator.pop(context);
-                                        Navigator.pop(context);
+                                        Navigator.pop(context, true);
                                       } else
                                         Navigator.pop(context);
                                     },

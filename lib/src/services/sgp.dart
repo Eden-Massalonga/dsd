@@ -14,11 +14,11 @@ import '../models/servico.dart';
 class SgpApi {
   Dio dio = new Dio();
 
-  String ip = 'http://192.168.43.23:4000';
+  String ip = 'http://192.168.8.101:4000';
 
   String dspace = 'https://demo.dspace.org/rest';
 
-  String local = 'http://192.168.43.23:8080/rest';
+  String local = 'http://192.168.8.101:8080/rest';
 
   Future<bool> saveEmail(String email) async {
     SharedPreferences instance = await SharedPreferences.getInstance();

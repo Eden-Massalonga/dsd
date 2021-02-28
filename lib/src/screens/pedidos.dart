@@ -5,7 +5,14 @@ import 'package:dsd/src/screens/pedidos/pedido_detalhes.dart';
 import 'package:dsd/src/services/sgp.dart';
 import 'package:flutter/material.dart';
 
-class Pedidos extends StatelessWidget {
+class Pedidos extends StatefulWidget {
+  @override
+  _PedidosState createState() => _PedidosState();
+}
+
+class _PedidosState extends State<Pedidos> {
+  bool refresh = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,9 +116,11 @@ class Pedidos extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          refresh = await Navigator.push(
               context, MaterialPageRoute(builder: (context) => NovoPedido()));
+
+          if (refresh) setState(() {});
         },
         backgroundColor: Colors.green[700],
         child: Icon(Icons.add),
